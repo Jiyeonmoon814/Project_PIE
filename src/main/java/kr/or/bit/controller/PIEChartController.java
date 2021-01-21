@@ -199,8 +199,6 @@ public class PIEChartController {
 				
 				ArrayList<Integer> card_seq_numbers = chartservice.getCardSeqByProjectNumService(projectNum, name);
 				
-				System.out.println("카드세크 넘버즈"+card_seq_numbers);
-				
 				for(int j = 0; j < card_seq_numbers.size(); j++) {
 					total_count	+= chartservice.getTotalCheckListByCardSeqService(card_seq_numbers.get(j));
 					done_count += chartservice.getTotalCheckedCheckListByCardSeqService(card_seq_numbers.get(j));
