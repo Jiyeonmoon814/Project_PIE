@@ -95,27 +95,26 @@ th{
 .chart-3-wrapper{
 	border-radius : 5px;
 	background-color : rgb(255,255,255,0.45);
-	width : 700px;
+	width : 440px;
 	position : absolute;
-	top : 550px;
+	top : 530px;
 	left : 40px;
 }
 .chart-3-wrapper-bar{
 	border-radius : 5px;
 	background-color : rgb(255,255,255,0.45);
-	width : 700px;
-	height : 374px;
+	width : 440px;
 	position : absolute;
-	top : 550px;
-	left : 800px;
+	top : 530px;
+	left : 550px;
 }
  .chart-4-wrapper{
 	border-radius : 5px;
 	background-color : rgb(255,255,255,0.45);
-	width : 700px;
+	width : 440px;
 	position : absolute;
-	left : 800px;
-	top : 990px;
+	left : 1060px;
+	top : 530px;
 
 }
  .whole-pie-wrapper{
