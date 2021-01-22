@@ -220,7 +220,7 @@ $(document).ready(function() {
 
 
 /*
-파일명: projectMainChat.js
+파일명: chatting.js
 설명: 멘션 기능(회원을 선택하면 멘션이 적용되도록 하는 함수)
 작성일: 2021-01-20
 기능구현: 도재구
@@ -251,7 +251,7 @@ function selectChatUser(me){
 }
 
 /*
-파일명: projectMainChat.js
+파일명: chatting.js
 설명: 멘션 팝업 띄우기
 작성일: 2021-01-20
 기능구현: 도재구
@@ -272,7 +272,7 @@ function popupMension(target){
 }
 
 /*
-파일명: projectMainChat.js
+파일명: chatting.js
 설명: 사용자가 채팅방에서 파일을 올렸을 때 실행되는 함수
 작성일: 2021-01-20
 기능구현: 도재구
@@ -390,7 +390,7 @@ function readURL(file) {
 }
 
 /*
-파일명: projectMainChat.js
+파일명: chatting.js
 설명: 사용자가 파일을 올렸을 때 파일 업로드
 작성일: 2021-01-20
 기능구현: 도재구
