@@ -58,7 +58,7 @@
 		</div>
 
 
-		<div class="whole-pie-wrapper">
+<!-- 		<div class="whole-pie-wrapper">
 			<div class="whole-pie-title-wrapper"></div>
 
 			<div class="whole-pie-cotent-wrapper">
@@ -87,7 +87,7 @@
 					</tr>
 				</table>
 			</div>
-		</div>
+		</div> -->
 
 		<!-- chart-4 -->
 		<div class="chart-4-wrapper">
