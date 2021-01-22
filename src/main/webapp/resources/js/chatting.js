@@ -21,11 +21,14 @@ $(document).ready(function() {
 				if(data.length > 3){
 					$.each(data, function(index,elem) {
 						let i = index + 1;
-						if(elem.profile != null){
-							opr+=	"<img class='chat-top-img-1-"+i+"' src='/resources/profile/"+elem.email+"_"+elem.profile+"'>";
-						}else{
-							opr+=	"<img class='chat-top-img-1-"+i+"' src='/resources/img/icon/none.png'>";
+						if(i <= 4){
+							if(elem.profile != null){
+								opr+=	"<img class='chat-top-img-1-"+i+"' src='/resources/profile/"+elem.email+"_"+elem.profile+"'>";
+							}else{
+								opr+=	"<img class='chat-top-img-1-"+i+"' src='/resources/img/icon/none.png'>";
+							}
 						}
+						
 					});
 					
 				}else if(data.length == 3){
@@ -336,7 +339,7 @@ function readURL(file) {
 			//엔터키를 눌렀을 경우
 			if (event.keyCode == 13 || event.which == 13) {
 				let filename = $('#file-input').val();
-				if(file.name != null && file.name != ''){
+				if(filename != null && filename != ''){
 					sendFiles(file.name);
 				}else{
 					send();
