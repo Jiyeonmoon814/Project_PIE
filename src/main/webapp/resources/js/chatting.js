@@ -28,7 +28,6 @@ $(document).ready(function() {
 								opr+=	"<img class='chat-top-img-1-"+i+"' src='/resources/img/icon/none.png'>";
 							}
 						}
-						
 					});
 					
 				}else if(data.length == 3){
@@ -297,20 +296,19 @@ function readURL(file) {
 		//확장자명에 따라 이미지를 다르게 보여줍니다.
 		if(extension === "png" || extension === "jpg" || extension === "jpeg" || extension === "gif"){
 			$('#img_zone').attr('src', e.target.result);
-		}else if(extension === "ppt" || extension === "pptx"){
+		}else if(	extension === "ppt" 	|| 
+					extension === "pptx"	||
+					extension === "xlsx"	||
+					extension === "xlsm"	||
+					extension === "hwp"		||
+					extension === "doc"		||
+					extension === "docx"	||
+					extension === "pdf"		||
+					extension === "txt"		||
+					extension === "zip"){
+						
 			$('#img_zone').attr('src', '/resources/img/icon/ppt.png');
-		}else if(extension === "xlsx" || extension === "xlsm"){
-			$('#img_zone').attr('src', '/resources/img/icon/excel.png');
-		}else if(extension === "hwp"){
-			$('#img_zone').attr('src', '/resources/img/icon/hwp.png');
-		}else if(extension === "doc" || extension === "docx"){
-			$('#img_zone').attr('src', '/resources/img/icon/doc.png');
-		}else if(extension === "pdf"){
-			$('#img_zone').attr('src', '/resources/img/icon/pdf.png');
-		}else if(extension === "txt"){
-			$('#img_zone').attr('src', '/resources/img/icon/txt.png');
-		}else if(extension === "zip"){
-			$('#img_zone').attr('src', '/resources/img/icon/zip.png');
+			
 		}else{
 			$('#img_zone').attr('src', '/resources/img/icon/file.png');
 		}
@@ -518,34 +516,24 @@ function onOpen(evt){
 											//file이 들어오면 파일 확장자 명에 따라 이미지를 다르게 준다
 											if(data.val()[i].message_content == ''){
 												if(data.val()[i].extension == 'jpg' || data.val()[i].extension == 'jpeg' || data.val()[i].extension == 'png' || data.val()[i].extension == 'gif'){
-													msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/files/file_directory_project_seq_"+$('#projectNum').val()+data.val()[i].message_file+"'>"+
-																"<br><a class='chat-receiver-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+data.val()[i].message_file.substring(1)+"'><i class='fas fa-download'></i> "+data.val()[i].message_file.substring(1)+"</a>";
-												}else if(data.val()[i].extension === "ppt" || data.val()[i].extension === "pptx"){
-													msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/img/icon/"+data.val()[i].extension+".png'>"+
-																"<br><a class='chat-receiver-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+data.val()[i].message_file.substring(1)+"'><i class='fas fa-download'></i> "+data.val()[i].message_file.substring(1)+"</a>";
-												}else if(data.val()[i].extension === "xlsx" || data.val()[i].extension === "xlsm"){
-													msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/img/icon/"+data.val()[i].extension+".png'>"+
-																"<br><a class='chat-receiver-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+data.val()[i].message_file.substring(1)+"'><i class='fas fa-download'></i> "+data.val()[i].message_file.substring(1)+"</a>";
-												}else if(data.val()[i].extension === "hwp"){
-													msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/img/icon/"+data.val()[i].extension+".png'>"+
-																"<br><a class='chat-receiver-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+data.val()[i].message_file.substring(1)+"'><i class='fas fa-download'></i> "+data.val()[i].message_file.substring(1)+"</a>";
-												}else if(data.val()[i].extension === "doc" || data.val()[i].extension === "docx"){
-													msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/img/icon/"+data.val()[i].extension+".png'>"+
-																"<br><a class='chat-receiver-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+data.val()[i].message_file.substring(1)+"'><i class='fas fa-download'></i> "+data.val()[i].message_file.substring(1)+"</a>";
-												}else if(data.val()[i].extension === "pdf"){
-													msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/img/icon/"+data.val()[i].extension+".png'>"+
-																"<br><a class='chat-receiver-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+data.val()[i].message_file.substring(1)+"'><i class='fas fa-download'></i> "+data.val()[i].message_file.substring(1)+"</a>";
-												}else if(data.val()[i].extension === "txt"){
-													msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/img/icon/"+data.val()[i].extension+".png'>"+
-																"<br><a class='chat-receiver-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+data.val()[i].message_file.substring(1)+"'><i class='fas fa-download'></i> "+data.val()[i].message_file.substring(1)+"</a>";
-												}else if(data.val()[i].extension === "zip"){
-													msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/img/icon/"+data.val()[i].extension+".png'>"+
-																"<br><a class='chat-receiver-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+data.val()[i].message_file.substring(1)+"'><i class='fas fa-download'></i> "+data.val()[i].message_file.substring(1)+"</a>";
+													msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/files/file_directory_project_seq_"+$('#projectNum').val()+data.val()[i].message_file+"'>";
+												}else if(	data.val()[i].extension === "ppt" 	|| 
+															data.val()[i].extension === "pptx" 	|| 
+															data.val()[i].extension === "xlsx" 	|| 
+															data.val()[i].extension === "xlsm"	||
+															data.val()[i].extension === "hwp" 	||
+															data.val()[i].extension === "doc" 	||
+															data.val()[i].extension === "docx" 	||
+															data.val()[i].extension === "pdf" 	||
+															data.val()[i].extension === "txt" 	||
+															data.val()[i].extension === "zip"){
+																
+													msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/img/icon/"+data.val()[i].extension+".png'>";
+													
 												}else{
-													msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/img/icon/file.png'>"+
-																"<br><a class='chat-receiver-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+data.val()[i].message_file.substring(1)+"'><i class='fas fa-download'></i> "+data.val()[i].message_file.substring(1)+"</a>";
+													msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/img/icon/file.png'>";
 												}
-											
+													msgbox +=	"<br><a class='chat-receiver-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+data.val()[i].message_file.substring(1)+"'><i class='fas fa-download'></i> "+data.val()[i].message_file.substring(1)+"</a>";
 											//일반 메시지가 들어오면
 											}else{
 												msgbox +=	data.val()[i].message_content;
@@ -577,34 +565,24 @@ function onOpen(evt){
 											//file이 들어오면 파일 확장자 명에 따라 이미지를 다르게 준다
 											if(data.val()[i].message_content == ''){
 												if(data.val()[i].extension == 'jpg' || data.val()[i].extension == 'jpeg' || data.val()[i].extension == 'png' || data.val()[i].extension == 'gif'){
-													msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/files/file_directory_project_seq_"+$('#projectNum').val()+data.val()[i].message_file+"'>"+
-																"<br><a class='chat-sender-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+data.val()[i].message_file.substring(1)+"'><i class='fas fa-download'></i> "+data.val()[i].message_file.substring(1)+"</a>";
-												}else if(data.val()[i].extension === "ppt" || data.val()[i].extension === "pptx"){
-													msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/img/icon/"+data.val()[i].extension+".png'>"+
-																"<br><a class='chat-sender-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+data.val()[i].message_file.substring(1)+"'><i class='fas fa-download'></i> "+data.val()[i].message_file.substring(1)+"</a>";
-												}else if(data.val()[i].extension === "xlsx" || data.val()[i].extension === "xlsm"){
-													msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/img/icon/"+data.val()[i].extension+".png'>"+
-																"<br><a class='chat-sender-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+data.val()[i].message_file.substring(1)+"'><i class='fas fa-download'></i> "+data.val()[i].message_file.substring(1)+"</a>";
-												}else if(data.val()[i].extension === "hwp"){
-													msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/img/icon/"+data.val()[i].extension+".png'>"+
-																"<br><a class='chat-sender-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+data.val()[i].message_file.substring(1)+"'><i class='fas fa-download'></i> "+data.val()[i].message_file.substring(1)+"</a>";
-												}else if(data.val()[i].extension === "doc" || data.val()[i].extension === "docx"){
-													msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/img/icon/"+data.val()[i].extension+".png'>"+
-																"<br><a class='chat-sender-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+data.val()[i].message_file.substring(1)+"'><i class='fas fa-download'></i> "+data.val()[i].message_file.substring(1)+"</a>";
-												}else if(data.val()[i].extension === "pdf"){
-													msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/img/icon/"+data.val()[i].extension+".png'>"+
-																"<br><a class='chat-sender-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+data.val()[i].message_file.substring(1)+"'><i class='fas fa-download'></i> "+data.val()[i].message_file.substring(1)+"</a>";
-												}else if(data.val()[i].extension === "txt"){
-													msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/img/icon/"+data.val()[i].extension+".png'>"+
-																"<br><a class='chat-sender-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+data.val()[i].message_file.substring(1)+"'><i class='fas fa-download'></i> "+data.val()[i].message_file.substring(1)+"</a>";
-												}else if(data.val()[i].extension === "zip"){
-													msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/img/icon/"+data.val()[i].extension+".png'>"+
-																"<br><a class='chat-sender-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+data.val()[i].message_file.substring(1)+"'><i class='fas fa-download'></i> "+data.val()[i].message_file.substring(1)+"</a>";
+													msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/files/file_directory_project_seq_"+$('#projectNum').val()+data.val()[i].message_file+"'>";
+												}else if(	data.val()[i].extension === "ppt" 	|| 
+															data.val()[i].extension === "pptx" 	||
+															data.val()[i].extension === "xlsx"	||
+															data.val()[i].extension === "xlsm"	||
+															data.val()[i].extension === "hwp"	||
+															data.val()[i].extension === "doc"	||
+															data.val()[i].extension === "docx"	||
+															data.val()[i].extension === "pdf"	||
+															data.val()[i].extension === "txt"	||
+															data.val()[i].extension === "zip"){
+																
+													msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/img/icon/"+data.val()[i].extension+".png'>";
+													
 												}else{
-													msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/img/icon/file.png'>"+
-																"<br><a class='chat-sender-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+data.val()[i].message_file.substring(1)+"'><i class='fas fa-download'></i> "+data.val()[i].message_file.substring(1)+"</a>";
+													msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/img/icon/file.png'>";
 												}
-											
+													msgbox +=	"<br><a class='chat-sender-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+data.val()[i].message_file.substring(1)+"'><i class='fas fa-download'></i> "+data.val()[i].message_file.substring(1)+"</a>";
 											//일반 메시지가 들어오면
 											}else{
 												msgbox +=	data.val()[i].message_content;
@@ -661,6 +639,8 @@ function onMessage(evt){
 function onClose(evt){
 	
 }
+
+
 
 //채팅방에 메시지를 입력할시 적용되는 함수
 function send(){
@@ -736,34 +716,24 @@ function appendMessage(msg) {
 														//file이 들어오면 파일 확장자 명에 따라 이미지를 다르게 준다
 														if(msg.indexOf('|/') != -1){
 															if(extension == 'jpg' || extension == 'jpeg' || extension == 'png' || extension == 'gif'){
-																msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/files/file_directory_project_seq_"+$('#projectNum').val()+strarray[3]+"'>"+
-																			"<br><a class='chat-receiver-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+strarray[3].substring(1)+"'><i class='fas fa-download'></i> "+strarray[3].substring(1)+"</a>";
-															}else if(extension === "ppt" || extension === "pptx"){
-																msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/img/icon/"+extension+".png'>"+
-																			"<br><a class='chat-receiver-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+strarray[3].substring(1)+"'><i class='fas fa-download'></i> "+strarray[3].substring(1)+"</a>";
-															}else if(extension === "xlsx" || extension === "xlsm"){
-																msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/img/icon/"+extension+".png'>"+
-																			"<br><a class='chat-receiver-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+strarray[3].substring(1)+"'><i class='fas fa-download'></i> "+strarray[3].substring(1)+"</a>";
-															}else if(extension === "hwp"){
-																msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/img/icon/"+extension+".png'>"+
-																			"<br><a class='chat-receiver-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+strarray[3].substring(1)+"'><i class='fas fa-download'></i> "+strarray[3].substring(1)+"</a>";
-															}else if(extension === "doc" || extension === "docx"){
-																msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/img/icon/"+extension+".png'>"+
-																			"<br><a class='chat-receiver-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+strarray[3].substring(1)+"'><i class='fas fa-download'></i> "+strarray[3].substring(1)+"</a>";
-															}else if(extension === "pdf"){
-																msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/img/icon/"+extension+".png'>"+
-																			"<br><a class='chat-receiver-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+strarray[3].substring(1)+"'><i class='fas fa-download'></i> "+strarray[3].substring(1)+"</a>";
-															}else if(extension === "txt"){
-																msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/img/icon/"+extension+".png'>"+
-																			"<br><a class='chat-receiver-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+strarray[3].substring(1)+"'><i class='fas fa-download'></i> "+strarray[3].substring(1)+"</a>";
-															}else if(extension === "zip"){
-																msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/img/icon/"+extension+".png'>"+
-																			"<br><a class='chat-receiver-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+strarray[3].substring(1)+"'><i class='fas fa-download'></i> "+strarray[3].substring(1)+"</a>";
+																msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/files/file_directory_project_seq_"+$('#projectNum').val()+strarray[3]+"'>";
+															}else if(	extension === "ppt"  || 
+																		extension === "pptx" ||
+																		extension === "xlsx" ||
+																		extension === "xlsm" ||
+																		extension === "hwp"	 ||
+																		extension === "doc"	 ||
+																		extension === "docx" ||
+																		extension === "pdf"	 ||
+																		extension === "txt"	 ||
+																		extension === "zip"){
+																			
+																msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/img/icon/"+extension+".png'>";
+																
 															}else{
-																msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/img/icon/file.png'>"+
-																			"<br><a class='chat-receiver-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+strarray[3].substring(1)+"'><i class='fas fa-download'></i> "+strarray[3].substring(1)+"</a>";
+																msgbox +=	"<img id='chat-receiver-file' class='chat-receiver-file' src='/resources/img/icon/file.png'>";
 															}
-														
+																msgbox +=	"<br><a class='chat-receiver-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+strarray[3].substring(1)+"'><i class='fas fa-download'></i> "+strarray[3].substring(1)+"</a>";
 														//일반 메시지가 들어오면
 														}else{
 															msgbox +=	message;
@@ -881,34 +851,24 @@ function appendMessage(msg) {
 														//file이 들어오면 파일 확장자 명에 따라 이미지를 다르게 준다
 														if(msg.indexOf('|/') != -1){
 															if(extension == 'jpg' || extension == 'jpeg' || extension == 'png' || extension == 'gif'){
-																msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/files/file_directory_project_seq_"+$('#projectNum').val()+strarray[3]+"'>"+
-																			"<br><a class='chat-sender-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+strarray[3].substring(1)+"'><i class='fas fa-download'></i> "+strarray[3].substring(1)+"</a>";
-															}else if(extension === "ppt" || extension === "pptx"){
-																msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/img/icon/"+extension+".png'>"+
-																			"<br><a class='chat-sender-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+strarray[3].substring(1)+"'><i class='fas fa-download'></i> "+strarray[3].substring(1)+"</a>";
-															}else if(extension === "xlsx" || extension === "xlsm"){
-																msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/img/icon/"+extension+".png'>"+
-																			"<br><a class='chat-sender-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+strarray[3].substring(1)+"'><i class='fas fa-download'></i> "+strarray[3].substring(1)+"</a>";
-															}else if(extension === "hwp"){
-																msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/img/icon/"+extension+".png'>"+
-																			"<br><a class='chat-sender-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+strarray[3].substring(1)+"'><i class='fas fa-download'></i> "+strarray[3].substring(1)+"</a>";
-															}else if(extension === "doc" || extension === "docx"){
-																msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/img/icon/"+extension+".png'>"+
-																			"<br><a class='chat-sender-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+strarray[3].substring(1)+"'><i class='fas fa-download'></i> "+strarray[3].substring(1)+"</a>";
-															}else if(extension === "pdf"){
-																msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/img/icon/"+extension+".png'>"+
-																			"<br><a class='chat-sender-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+strarray[3].substring(1)+"'><i class='fas fa-download'></i> "+strarray[3].substring(1)+"</a>";
-															}else if(extension === "txt"){
-																msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/img/icon/"+extension+".png'>"+
-																			"<br><a class='chat-sender-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+strarray[3].substring(1)+"'><i class='fas fa-download'></i> "+strarray[3].substring(1)+"</a>";
-															}else if(extension === "zip"){
-																msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/img/icon/"+extension+".png'>"+
-																			"<br><a class='chat-sender-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+strarray[3].substring(1)+"'><i class='fas fa-download'></i> "+strarray[3].substring(1)+"</a>";
+																msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/files/file_directory_project_seq_"+$('#projectNum').val()+strarray[3]+"'>";
+															}else if(	extension === "ppt"  || 
+																		extension === "pptx" ||
+																		extension === "xlsx" ||
+																		extension === "xlsm" ||
+																		extension === "hwp"	 ||
+																		extension === "doc"	 ||
+																		extension === "docx" ||
+																		extension === "pdf"	 ||
+																		extension === "txt"	 ||
+																		extension === "zip"){
+																			
+																msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/img/icon/"+extension+".png'>";
+																
 															}else{
-																msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/img/icon/file.png'>"+
-																			"<br><a class='chat-sender-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+strarray[3].substring(1)+"'><i class='fas fa-download'></i> "+strarray[3].substring(1)+"</a>";
+																msgbox +=	"<img id='chat-sender-file' class='chat-sender-file' src='/resources/img/icon/file.png'>";
 															}
-														
+																msgbox +=	"<br><a class='chat-sender-file-a' href='chat/file/download?project_seq="+$('#projectNum').val()+"&file_uploaded_name="+strarray[3].substring(1)+"'><i class='fas fa-download'></i> "+strarray[3].substring(1)+"</a>";
 														//일반 메시지가 들어오면
 														}else{
 															msgbox +=	message;

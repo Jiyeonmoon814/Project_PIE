@@ -363,57 +363,38 @@ function chattingRoomList(data){
 					"<div class='chat-list-img'>";
 							$.each(Object.keys(data.profiles),function(index, roomno){
 								if(roomno == elem.chatting_room_seq){
+									
 									if(data.profiles[elem.chatting_room_seq].length > 3){
-										
-										if(data.profiles[elem.chatting_room_seq][0].profile != null){
-											opr+=	"<img class='chat-list-img-1-1' src='/resources/profile/"+data.profiles[elem.chatting_room_seq][0].email+"_"+data.profiles[elem.chatting_room_seq][0].profile+"'>";
-										}else{
-											opr+=	"<img class='chat-list-img-1-1' src='/resources/img/icon/none.png'>";
-										}
-										if(data.profiles[elem.chatting_room_seq][1].profile != null){
-											opr+=	"<img class='chat-list-img-1-2' src='/resources/profile/"+data.profiles[elem.chatting_room_seq][1].email+"_"+data.profiles[elem.chatting_room_seq][1].profile+"'>";
-										}else{
-											opr+=	"<img class='chat-list-img-1-2' src='/resources/img/icon/none.png'>";
-										}
-										if(data.profiles[elem.chatting_room_seq][2].profile != null){
-											opr+=	"<img class='chat-list-img-1-3' src='/resources/profile/"+data.profiles[elem.chatting_room_seq][2].email+"_"+data.profiles[elem.chatting_room_seq][2].profile+"'>";
-										}else{
-											opr+=	"<img class='chat-list-img-1-3' src='/resources/img/icon/none.png'>";
-										}
-										if(data.profiles[elem.chatting_room_seq][3].profile != null){
-											opr+=	"<img class='chat-list-img-1-4' src='/resources/profile/"+data.profiles[elem.chatting_room_seq][3].email+"_"+data.profiles[elem.chatting_room_seq][3].profile+"'>";
-										}else{
-											opr+=	"<img class='chat-list-img-1-4' src='/resources/img/icon/none.png'>";
-										}
+										$.each(data.profiles[elem.chatting_room_seq], function(index,elem){
+											let i = index + 1;
+											if(i <= 4){
+												if(elem.profile != null){
+													opr+=	"<img class='chat-list-img-1-"+i+"' src='/resources/profile/"+elem.email+"_"+elem.profile+"'>";
+												}else{
+													opr+=	"<img class='chat-list-img-1-"+i+"' src='/resources/img/icon/none.png'>";
+												}
+											}
+										});
 										
 									}else if(data.profiles[elem.chatting_room_seq].length == 3){
-										if(data.profiles[elem.chatting_room_seq][0].profile != null){
-											opr+=	"<img class='chat-list-img-2-1' src='/resources/profile/"+data.profiles[elem.chatting_room_seq][0].email+"_"+data.profiles[elem.chatting_room_seq][0].profile+"'>";
-										}else{
-											opr+=	"<img class='chat-list-img-2-1' src='/resources/img/icon/none.png'>";
-										}
-										if(data.profiles[elem.chatting_room_seq][1].profile != null){
-											opr+=	"<img class='chat-list-img-2-2' src='/resources/profile/"+data.profiles[elem.chatting_room_seq][1].email+"_"+data.profiles[elem.chatting_room_seq][1].profile+"'>";
-										}else{
-											opr+=	"<img class='chat-list-img-2-2' src='/resources/img/icon/none.png'>";
-										}
-										if(data.profiles[elem.chatting_room_seq][2].profile != null){
-											opr+=	"<img class='chat-list-img-2-3' src='/resources/profile/"+data.profiles[elem.chatting_room_seq][2].email+"_"+data.profiles[elem.chatting_room_seq][2].profile+"'>";
-										}else{
-											opr+=	"<img class='chat-list-img-2-3' src='/resources/img/icon/none.png'>";
-										}
+										$.each(data.profiles[elem.chatting_room_seq], function(index,elem){
+											let i = index + 1;
+											if(elem.profile != null){
+												opr+=	"<img class='chat-list-img-2-"+i+"' src='/resources/profile/"+elem.email+"_"+elem.profile+"'>";
+											}else{
+												opr+=	"<img class='chat-list-img-2-"+i+"' src='/resources/img/icon/none.png'>";
+											}
+										});
 																				
 									}else if(data.profiles[elem.chatting_room_seq].length == 2){
-										if(data.profiles[elem.chatting_room_seq][0].profile != null){
-											opr+=	"<img class='chat-list-img-3-1' src='/resources/profile/"+data.profiles[elem.chatting_room_seq][0].email+"_"+data.profiles[elem.chatting_room_seq][0].profile+"'>";
-										}else{
-											opr+=	"<img class='chat-list-img-3-1' src='/resources/img/icon/none.png'>";
-										}
-										if(data.profiles[elem.chatting_room_seq][1].profile != null){
-											opr+=	"<img class='chat-list-img-3-2' src='/resources/profile/"+data.profiles[elem.chatting_room_seq][1].email+"_"+data.profiles[elem.chatting_room_seq][1].profile+"'>";
-										}else{
-											opr+=	"<img class='chat-list-img-3-2' src='/resources/img/icon/none.png'>";
-										}										
+										$.each(data.profiles[elem.chatting_room_seq], function(index,elem){
+											let i = index + 1;
+											if(elem.profile != null){
+												opr+=	"<img class='chat-list-img-3-"+i+"' src='/resources/profile/"+elem.email+"_"+elem.profile+"'>";
+											}else{
+												opr+=	"<img class='chat-list-img-3-"+i+"' src='/resources/img/icon/none.png'>";
+											}
+										});
 									}
 									
 								}
@@ -469,56 +450,38 @@ function completeChattingRoom(data){
 					"<div class='chat-list-img'>";
 						$.each(Object.keys(data.profiles),function(index, roomno){
 								if(roomno == elem.chatting_room_seq){
+									
 									if(data.profiles[elem.chatting_room_seq].length > 3){
-										if(data.profiles[elem.chatting_room_seq][0].profile != null){
-											opr+=	"<img class='chat-list-img-1-1' src='/resources/profile/"+data.profiles[elem.chatting_room_seq][0].email+"_"+data.profiles[elem.chatting_room_seq][0].profile+"'>";
-										}else{
-											opr+=	"<img class='chat-list-img-1-1' src='/resources/img/icon/none.png'>";
-										}
-										if(data.profiles[elem.chatting_room_seq][1].profile != null){
-											opr+=	"<img class='chat-list-img-1-2' src='/resources/profile/"+data.profiles[elem.chatting_room_seq][1].email+"_"+data.profiles[elem.chatting_room_seq][1].profile+"'>";
-										}else{
-											opr+=	"<img class='chat-list-img-1-2' src='/resources/img/icon/none.png'>";
-										}
-										if(data.profiles[elem.chatting_room_seq][2].profile != null){
-											opr+=	"<img class='chat-list-img-1-3' src='/resources/profile/"+data.profiles[elem.chatting_room_seq][2].email+"_"+data.profiles[elem.chatting_room_seq][2].profile+"'>";
-										}else{
-											opr+=	"<img class='chat-list-img-1-3' src='/resources/img/icon/none.png'>";
-										}
-										if(data.profiles[elem.chatting_room_seq][3].profile != null){
-											opr+=	"<img class='chat-list-img-1-4' src='/resources/profile/"+data.profiles[elem.chatting_room_seq][3].email+"_"+data.profiles[elem.chatting_room_seq][3].profile+"'>";
-										}else{
-											opr+=	"<img class='chat-list-img-1-4' src='/resources/img/icon/none.png'>";
-										}
+										$.each(data.profiles[elem.chatting_room_seq], function(index,elem){
+											let i = index + 1;
+											if(i <= 4){
+												if(elem.profile != null){
+													opr+=	"<img class='chat-list-img-1-"+i+"' src='/resources/profile/"+elem.email+"_"+elem.profile+"'>";
+												}else{
+													opr+=	"<img class='chat-list-img-1-"+i+"' src='/resources/img/icon/none.png'>";
+												}
+											}
+										});
 										
 									}else if(data.profiles[elem.chatting_room_seq].length == 3){
-										if(data.profiles[elem.chatting_room_seq][0].profile != null){
-											opr+=	"<img class='chat-list-img-2-1' src='/resources/profile/"+data.profiles[elem.chatting_room_seq][0].email+"_"+data.profiles[elem.chatting_room_seq][0].profile+"'>";
-										}else{
-											opr+=	"<img class='chat-list-img-2-1' src='/resources/img/icon/none.png'>";
-										}
-										if(data.profiles[elem.chatting_room_seq][1].profile != null){
-											opr+=	"<img class='chat-list-img-2-2' src='/resources/profile/"+data.profiles[elem.chatting_room_seq][1].email+"_"+data.profiles[elem.chatting_room_seq][1].profile+"'>";
-										}else{
-											opr+=	"<img class='chat-list-img-2-2' src='/resources/img/icon/none.png'>";
-										}
-										if(data.profiles[elem.chatting_room_seq][2].profile != null){
-											opr+=	"<img class='chat-list-img-2-3' src='/resources/profile/"+data.profiles[elem.chatting_room_seq][2].email+"_"+data.profiles[elem.chatting_room_seq][2].profile+"'>";
-										}else{
-											opr+=	"<img class='chat-list-img-2-3' src='/resources/img/icon/none.png'>";
-										}
+										$.each(data.profiles[elem.chatting_room_seq], function(index,elem){
+											let i = index + 1;
+											if(elem.profile != null){
+												opr+=	"<img class='chat-list-img-2-"+i+"' src='/resources/profile/"+elem.email+"_"+elem.profile+"'>";
+											}else{
+												opr+=	"<img class='chat-list-img-2-"+i+"' src='/resources/img/icon/none.png'>";
+											}
+										});
 																				
 									}else if(data.profiles[elem.chatting_room_seq].length == 2){
-										if(data.profiles[elem.chatting_room_seq][0].profile != null){
-											opr+=	"<img class='chat-list-img-3-1' src='/resources/profile/"+data.profiles[elem.chatting_room_seq][0].email+"_"+data.profiles[elem.chatting_room_seq][0].profile+"'>";
-										}else{
-											opr+=	"<img class='chat-list-img-3-1' src='/resources/img/icon/none.png'>";
-										}
-										if(data.profiles[elem.chatting_room_seq][1].profile != null){
-											opr+=	"<img class='chat-list-img-3-2' src='/resources/profile/"+data.profiles[elem.chatting_room_seq][1].email+"_"+data.profiles[elem.chatting_room_seq][1].profile+"'>";
-										}else{
-											opr+=	"<img class='chat-list-img-3-2' src='/resources/img/icon/none.png'>";
-										}										
+										$.each(data.profiles[elem.chatting_room_seq], function(index,elem){
+											let i = index + 1;
+											if(elem.profile != null){
+												opr+=	"<img class='chat-list-img-3-"+i+"' src='/resources/profile/"+elem.email+"_"+elem.profile+"'>";
+											}else{
+												opr+=	"<img class='chat-list-img-3-"+i+"' src='/resources/img/icon/none.png'>";
+											}
+										});
 									}
 									
 								}

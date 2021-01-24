@@ -209,12 +209,13 @@ public class PIEChartController {
 				
 				mp.setEmail(name);
 				mp.setDone(done);
-				double doneDouble = Double.parseDouble(done);
-				double inpro = hundred-doneDouble;
-				String lastInpro = form.format(inpro);
 				
-				mp.setInProgress(lastInpro);
-				
+				if(total_count != 0) {
+					double doneDouble = Double.parseDouble(done);
+					double inpro = hundred-doneDouble;
+					String lastInpro = form.format(inpro);
+					mp.setInProgress(lastInpro);
+				}
 				model.addAttribute("mp", mp);
 		
 				return jsonview; 
