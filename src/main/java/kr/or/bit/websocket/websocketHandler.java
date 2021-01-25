@@ -46,8 +46,8 @@ public class websocketHandler extends TextWebSocketHandler{
 		protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 			for(WebSocketSession sess: sessionList) {
 				sess.sendMessage(new TextMessage("Alarm"));
+			}
 		}
-			 }
 
 		@Override
 		public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
