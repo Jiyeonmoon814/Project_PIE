@@ -14,6 +14,12 @@ import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
+/*
+파일명: NaverLoginBO.java
+설명: 네이버 로그인 API
+작성일: 2021-01-10 ~ 
+작성자: 변재홍
+*/
 public class NaverLoginBO {
 
     /* 인증 요청문을 구성하는 파라미터 */
@@ -23,7 +29,7 @@ public class NaverLoginBO {
     //state: 애플리케이션이 생성한 상태 토큰
     private final static String CLIENT_ID = "iDqMB2o53wSsVqzBh6Um";       
     private final static String CLIENT_SECRET = "js1zGCxT8G";                      
-    private final static String REDIRECT_URI = "http://localhost:8090/bit/callback.do";
+    private final static String REDIRECT_URI = "http://localhost:8090/callback.pie";
     private final static String SESSION_STATE = "oauth_state";
     /* 프로필 조회 API URL */
     private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";/// Api 종류 기본 !!

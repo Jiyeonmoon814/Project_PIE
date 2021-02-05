@@ -21,6 +21,13 @@ import kr.or.bit.dto.user;
 import kr.or.bit.service.UserService;
 import kr.or.bit.util.NaverLoginBO;
 
+
+/*
+파일명: NaverLoginController.java
+설명: 네이버 로그인 및 회원가입 처리 컨트롤러
+작성일: 2021-01-10 ~ 
+작성자: 변재홍
+*/
 @Controller
 public class NaverLoginController {
 	
@@ -40,7 +47,7 @@ public class NaverLoginController {
     }
 
     //로그인 첫 화면 요청 메소드
-    @RequestMapping(value = "naverlogin.do", method = { RequestMethod.GET, RequestMethod.POST })
+    @RequestMapping(value = "naverlogin.pie", method = { RequestMethod.GET, RequestMethod.POST })
     public String login(Model model, HttpSession session) {
         
         /* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
@@ -54,7 +61,7 @@ public class NaverLoginController {
     }
 
     //네이버 로그인 성공시 callback호출 메소드
-    @RequestMapping(value = "callback.do", method = { RequestMethod.GET, RequestMethod.POST })
+    @RequestMapping(value = "callback.pie", method = { RequestMethod.GET, RequestMethod.POST })
     public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
             throws IOException {
         OAuth2AccessToken oauthToken;
@@ -63,7 +70,6 @@ public class NaverLoginController {
         //로그인 사용자 정보를 읽어온다.
         apiResult = naverLoginBO.getUserProfile(oauthToken);
         model.addAttribute("result", apiResult);
-        System.out.println("result"+apiResult);
         
         //String형식인 apiResult를 json형태로 바꿈
         JSONParser parser = new JSONParser();
@@ -87,22 +93,32 @@ public class NaverLoginController {
         user isExist = userservice.searchEmail(email);
         if(isExist != null) {
         	//아이디가 이미 존재하면 바로 메인 페이지로 이동
-        	System.out.println("아이디 존재");
+        	session.setAttribute("nick", isExist.getNickName());
         	session.setAttribute("loginuser", email);
-        	return "projectList";
+        	return "main/main";
         }else {
         	//없으면 디비에 insert 후에 이동 
-        	System.out.println("아이디 없음");
         	user u = new user();
         	u.setEmail(email);
         	u.setNickName(nickname);
         	
-        	String pwd = "임시비밀번호";//임시 비밀번호 변경이 필요함..
-        	u.setPwd(this.bCryptPasswordEncoder.encode(pwd));
+    		//임시 비밀번호 생성
+			Random rnd = new Random();
+			StringBuffer buf = new StringBuffer();
+			for (int i = 0; i < 30; i++) {
+				if (rnd.nextBoolean()) {
+					buf.append((char) ((int) (rnd.nextInt(26)) + 97));
+				} else {
+					buf.append((rnd.nextInt(10)));
+				}
+			}
+			
+        	u.setPwd(this.bCryptPasswordEncoder.encode(buf));
+        	session.setAttribute("nick", nickname);
         	session.setAttribute("loginuser", email);
         	
         	userservice.insertUser(u); // mysql에 user insert : 회원가입 성공
-        	return "projectList";
+        	return "main/main";
         }
         
     }

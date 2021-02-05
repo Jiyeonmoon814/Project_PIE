@@ -18,6 +18,13 @@ import org.springframework.web.servlet.View;
 import kr.or.bit.dto.user;
 import kr.or.bit.service.UserService;
 
+
+/*
+파일명: UserController.java 
+설명: 사용자 로그인 및 회원가입 컨트롤러
+작성일: 2021-01-10 ~ 
+작성자: 변재홍
+*/
 @Controller
 public class UserController {
 
@@ -39,7 +46,7 @@ public class UserController {
 	int ran;
 
 	// 회원가입 버튼을 눌렀을 때 이메일 전송 method
-	@RequestMapping(value = "joinOk.do", method = RequestMethod.POST)
+	@RequestMapping(value = "joinOk.pie", method = RequestMethod.POST)
 	public String joinOk(user u) {
 		map.put("user", u);
 		try {
@@ -48,18 +55,18 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "user/emailCheck";
+		return "user/register_emailRequest";
 	}
 	
 	//로그아웃
-	@RequestMapping(value = "logout.do", method = RequestMethod.GET)
+	@RequestMapping(value = "logout.pie", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:index.htm";
 	}
 
 	// 유저들이 받은 이메일을 눌러서 서버에게 다시 request할 때 타는 method
-	@RequestMapping(value = "checkEmail.do", method = RequestMethod.GET)
+	@RequestMapping(value = "checkEmail.pie", method = RequestMethod.GET)
 	public String emailCheck(@RequestParam("check") int ranCheck, HttpSession session) {
 		boolean trueOrFalse;
 		user u = (user) map.get("user");
@@ -77,16 +84,15 @@ public class UserController {
 	}
 
 	// 이메일 확인 비동기
-	@RequestMapping(value = "searchEmail.do", method = RequestMethod.POST)
+	@RequestMapping(value = "searchEmail.pie", method = RequestMethod.POST)
 	public View memberSearch(user u, Model model) {
-		System.out.println(u.getEmail());
 		user isExist = userservice.searchEmail(u.getEmail());
 		model.addAttribute("user", isExist);
 		return jsonview;
 	}
 
 	// 이메일로 인증번호 전송 컨트롤러
-	@RequestMapping(value = "findPassword.do", method = RequestMethod.POST)
+	@RequestMapping(value = "findPassword.pie", method = RequestMethod.POST)
 	public View findPassword(user u, Model model) {
 
 		// 이메일로 보낼 난수
@@ -97,7 +103,6 @@ public class UserController {
 			userservice.passwordCertify(u.getEmail(), ran);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println(e.getMessage());
 		}
 		model.addAttribute("user", u.getEmail());
 		return jsonview;
@@ -105,27 +110,24 @@ public class UserController {
 
 	// 비밀번호 찾기에서 입력한 인증번호 확인 컨트롤러
 	@ResponseBody
-	@RequestMapping(value = "certifyCheck.do", method = RequestMethod.POST)
+	@RequestMapping(value = "certifyCheck.pie", method = RequestMethod.POST)
 	public String certifyCheck(@RequestParam("certifyNum") int certifyNum) {
-		System.out.println(certifyNum);
 		if (certifyNum == ran) {
 			// 인증번호 맞음
-			System.out.println("인증번호확인완료");
 			return "success";
 		} else {
 			// 인증번호 틀림
-			System.out.println("인증번호확인실패");
 			return "fail";
 		}
 	}
 
 	// 비밀번호 변경
-	@RequestMapping(value = "modifyPassword.do", method = RequestMethod.POST)
-	public String modifyPassword(user u, HttpSession session) {
+	@RequestMapping(value = "modifyPassword.pie", method = RequestMethod.POST)
+	public String modifyPassword(@RequestParam("email") String email ,user u, HttpSession session) {
+		u.setEmail(email);
 		u.setPwd(this.bCryptPasswordEncoder.encode(u.getPwd()));//비밀번호 암호화 
 		userservice.modifyPassword(u);
 		boolean check = true;
-		System.out.println("비밀번호 변경 완료");
 		session.setAttribute("check", check);
 		return "redirect:index.htm";
 	}

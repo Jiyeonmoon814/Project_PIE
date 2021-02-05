@@ -3,26 +3,93 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.2.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+	<!-- websocket handler -->
+ 	<beans:bean id="websocketHandler" class="kr.or.bit.websocket.websocketHandler" />
+	<beans:bean id="chatsocketHandler" class="kr.or.bit.websocket.chatsocketHandler" />
+	<beans:bean id="kanbanWebsocketHandler" class="kr.or.bit.websocket.kanbanWebsocketHandler" />
+	<beans:bean id="logonsocketHandler" class="kr.or.bit.websocket.logonsocketHandler" />
+	<beans:bean id="connectsocketHandler" class="kr.or.bit.websocket.connectsocketHandler" />
+	<beans:bean id="chatReceivesocketHandler" class="kr.or.bit.websocket.chatReceivesocketHandler" />
+	<beans:bean id="connectChatAlarmsocketHandler" class="kr.or.bit.websocket.connectChatAlarmsocketHandler" />
+	
+	<websocket:handlers>
+		<websocket:mapping handler="websocketHandler" path="/websocket/echo" />
+		<websocket:handshake-interceptors>
+	         <beans:bean class="kr.or.bit.websocket.alarmHandShakeInterceptor"/>
+	      </websocket:handshake-interceptors>
+	      <websocket:sockjs/>
+	 </websocket:handlers>
+
+	<websocket:handlers>
+		<websocket:mapping handler="chatsocketHandler" path="/websocket/chat" />
+		<websocket:handshake-interceptors>
+			<beans:bean class="kr.or.bit.websocket.chatHandShakeInterceptor"/>
+	      </websocket:handshake-interceptors>
+	      <websocket:sockjs/>
+	 </websocket:handlers>
+	 
+	 <websocket:handlers>
+		<websocket:mapping handler="chatReceivesocketHandler" path="/websocket/chatReceive" />
+		<websocket:handshake-interceptors>
+			<beans:bean class="kr.or.bit.websocket.chatHandShakeInterceptor"/>
+	      </websocket:handshake-interceptors>
+	      <websocket:sockjs/>
+	 </websocket:handlers>
+	 
+	 <websocket:handlers>
+		<websocket:mapping handler="kanbanWebsocketHandler" path="/websocket/kanban" />
+		<websocket:handshake-interceptors>
+	         <beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+	      </websocket:handshake-interceptors>
+	      <websocket:sockjs/>
+	 </websocket:handlers>
+	 
+	<websocket:handlers>
+		<websocket:mapping handler="logonsocketHandler" path="/websocket/logon" />
+		<websocket:handshake-interceptors>
+			<beans:bean class="kr.or.bit.websocket.logonHandShakeInterceptor"/>
+		</websocket:handshake-interceptors>
+		<websocket:sockjs/>
+	</websocket:handlers>
+
+	<websocket:handlers>
+		<websocket:mapping handler="connectsocketHandler" path="/websocket/connect" />
+		<websocket:handshake-interceptors>
+			<beans:bean class="kr.or.bit.websocket.connectHandShakeInterceptor"/>
+		</websocket:handshake-interceptors>
+		<websocket:sockjs/>
+	</websocket:handlers>
+	
+	<websocket:handlers>
+		<websocket:mapping handler="connectChatAlarmsocketHandler" path="/websocket/connectChatAlarm" />
+		<websocket:handshake-interceptors>
+			<beans:bean class="kr.or.bit.websocket.connectHandShakeInterceptor"/>
+		</websocket:handshake-interceptors>
+		<websocket:sockjs/>
+	</websocket:handlers>
+	
+	
 	<!-- resources 폴더 매핑 -->
-	<mvc:resources mapping="/js/**" location="/resources/js/" />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/js/**" location="/resources/js/" />
+	<!-- <mvc:resources mapping="/css/**" location="/resources/css/" /> -->
 
 	<!-- 자동으로 빈 생성 -->
 	<context:annotation-config />
-	<context:component-scan base-package="kr.or.bit.controller" />
-	<context:component-scan base-package="kr.or.bit.service" />
-	<context:component-scan base-package="kr.or.bit.dao" />
+	<context:component-scan base-package="kr.or.bit" />
 		
 	<!-- json view -->
 	<beans:bean name="jsonview" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
 	
 	<!-- naverbo -->
 	<beans:bean name ="naverLoginBO" class = "kr.or.bit.util.NaverLoginBO"/>
-	
+
 	<mvc:annotation-driven>
 	<mvc:message-converters>
 		<beans:bean class="org.springframework.http.converter.StringHttpMessageConverter">
@@ -35,6 +102,7 @@
 		</beans:bean>
 	</mvc:message-converters>
 </mvc:annotation-driven> 
-	
+
+<mvc:resources mapping="/favicon.ico" location="/favicon.ico" />
 
 </beans:beans>

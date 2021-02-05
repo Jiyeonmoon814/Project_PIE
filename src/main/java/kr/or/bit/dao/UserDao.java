@@ -10,4 +10,10 @@ public interface UserDao {
 	
 	public void modifyPassword(user u);
 	
+	public String getProfile(String email);
+	
+	public boolean profileUploadToDB(String email, String fullName);
+	
+	public String getNickNameByEmail(String email);
+	
 }
