@@ -1,3 +1,6 @@
+- [파이 발표 동영상](https://www.youtube.com/watch?v=sa6V4eMHsDE&ab_channel=%EB%B3%80%EC%9E%AC%ED%99%8D)<br>
+- [파이 시연 동영상](https://www.youtube.com/watch?v=ZEJ4SjyQjl0&ab_channel=%EB%B3%80%EC%9E%AC%ED%99%8D)<br>
+
 ![pie_logo_letter](https://user-images.githubusercontent.com/67107008/106469335-80218900-64e2-11eb-8d78-391fcdc5233c.png)
 
 # PIE
