@@ -2,7 +2,6 @@
 
 # PIE
 PIE는 약 6주 동안 준비한 비트캠프 2조(팀명: PIE)의 Spring FrameWork 중심의 파이널 프로젝트입니다. 5개월 간의 배운 것을 총 활용해서 만든 프로젝트이며, 4명의 팀원이 함께 만들었습니다.
-- [파이 발표 동영상](https://www.youtube.com/watch?v=sa6V4eMHsDE&ab_channel=%EB%B3%80%EC%9E%AC%ED%99%8D)<br>
 - [파이 시연 동영상](https://www.youtube.com/watch?v=ZEJ4SjyQjl0&ab_channel=%EB%B3%80%EC%9E%AC%ED%99%8D)<br>
 <br><br>
 # 프로젝트 개요
